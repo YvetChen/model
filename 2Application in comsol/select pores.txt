@@ -1,0 +1,24 @@
+
+int num_sel = num_circleandellipse;
+int[] ce_list = new int[num_sel+1];
+for (int i1 = 1; i1 < num_sel; i1++) {
+  ce_list[i1] = i1+11;
+}
+//String[] sph1 = new String[num_cir];
+//String[] sph2 = new String[num_ell];
+//int sum = num_cir+num_ell;
+//String[] sph3 = new String[sum];
+
+
+//while (i4 < num_cir+1) {sph1[i4] = "c"+(i4); i4++; }
+//while (i5 < num_ell+1) {sph1[i5] = "e"+(i5); i5++; }
+//for (int i4 = 0; i4 < num_cir; i4++) {sph1[i4] = "c"+(i4+1); }
+//for (int i5 = 0; i5 < num_ell; i5++) {sph2[i5] = "e"+(i5+1); }
+
+
+//System.arraycopy(sph1, 0, sph3, 0, num_cir);
+//System.arraycopy(sph2, 0, sph3, num_cir, num_ell);
+
+model.component("comp1").selection("sel2").set(ce_list);
+
+

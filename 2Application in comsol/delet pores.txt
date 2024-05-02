@@ -1,0 +1,15 @@
+int num_zero = num_del_cir;
+
+for (int i1 = 1; i1 < num_zero+1; i1++) {
+  model.component("comp1").geom("geom1").feature().remove("c"+i1);
+}
+
+
+int num_zero1 = num_del_ell;
+
+for (int i1 = 1; i1 < num_zero1+1; i1++) {
+  model.component("comp1").geom("geom1").feature().remove("e"+i1);
+}
+
+model.component("comp1").geom("geom1").feature().remove("dif1");
+model.component("comp1").geom("geom1").run("fin");

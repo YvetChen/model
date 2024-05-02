@@ -1,0 +1,35 @@
+
+for (int l = 1; l < 1+num_cir; l++) {
+  //
+  model.component("comp1").geom("geom1").create("c"+l, "Circle");
+  model.component("comp1").geom("geom1").feature("c"+l).set("r", r0);
+  model.component("comp1").geom("geom1").feature("c"+l).set("pos", new double[]{x_list[l], y_list[l]});
+}
+
+for (int g = 1; g < 1+num_ell; g++) {
+  model.component("comp1").geom("geom1").create("e"+g, "Ellipse");
+  model.component("comp1").geom("geom1").feature("e"+g).set("semiaxes", new double[]{lc, lc*mu});
+  model.component("comp1").geom("geom1").feature("e"+g).set("pos", new double[]{x_list1[g], y_list1[g]});
+  model.component("comp1").geom("geom1").feature("e"+g).set("rot", new double[]{al_list[g]});
+}
+
+model.component("comp1").geom("geom1").create("dif1", "Difference");
+model.component("comp1").geom("geom1").feature("dif1").selection("input").set("r1");
+
+String[] sph1 = new String[num_cir];
+String[] sph2 = new String[num_ell];
+int sum = num_cir+num_ell;
+String[] sph3 = new String[sum];
+
+//while (i4 < num_cir+1) {sph1[i4] = "c"+(i4); i4++; }
+//while (i5 < num_ell+1) {sph1[i5] = "e"+(i5); i5++; }
+for (int i4 = 0; i4 < num_cir; i4++) {sph1[i4] = "c"+(i4+1); }
+for (int i5 = 0; i5 < num_ell; i5++) {sph2[i5] = "e"+(i5+1); }
+
+System.arraycopy(sph1, 0, sph3, 0, num_cir);
+System.arraycopy(sph2, 0, sph3, num_cir, num_ell);
+
+model.component("comp1").geom("geom1").feature("dif1").selection("input2").set(sph3);
+model.component("comp1").geom("geom1").feature("dif1").set("keepsubtract", true);
+model.component("comp1").geom("geom1").run("dif1");
+model.component("comp1").geom("geom1").run("fin");
